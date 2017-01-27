@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -97,6 +95,18 @@ public class AppController {
         model.addAttribute("response", response);
         return "result";
     }
+
+    @RequestMapping(value = "/addAsXML", method = RequestMethod.POST)
+    public String addAsXML (HttpServletRequest request, Model model)
+            throws UnsupportedEncodingException {
+        String message = "Add as XML request successfully completed";
+        String response = add.addAsXML(request);
+        model.addAttribute("greeting", AppController.greeting);
+        model.addAttribute("message", message);
+        model.addAttribute("response", response);
+        return "result";
+    }
+
 
     @RequestMapping (
             value="/viewAllAsXML",

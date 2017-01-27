@@ -12,7 +12,7 @@
 <fieldset class="fieldset">
     <legend>Add Aircraft</legend>
     <h1>You can add new type of Aircraft from XML object here</h1>
-    <form class="mailForm" method="post" action="add">
+    <form class="mailForm" method="post" action="addAsXML">
         <table align="center">
             <tr>
                 <td><label>XML object:</label></td>

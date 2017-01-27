@@ -3,8 +3,11 @@ package com.omut.exampleWebApp.dao;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 
 @XmlRootElement
@@ -100,16 +103,48 @@ public class Airplane {
         this.passenger_capacity = passenger_capacity;
     }
 
+    public String toString () {
+        return "Object type: " + this.getClass().getName() + "\n" +
+                "id: " + this.getId() + "\n" +
+                "type: " + this.getType() + "\n" +
+                "manufacturer: " + this.getManufacturer() + "\n" +
+                "number engines: " + this.getNumber_engines() + "\n" +
+                "range distance: " + this.getRange_distance() + "\n" +
+                "cruise speed: " + this.getCruise_speed() + "\n" +
+                "passenger capacity: " + this.getPassenger_capacity();
+    }
+
     public String toXML () {
         StringWriter writer = new StringWriter();
         try {
             JAXBContext context = JAXBContext.newInstance(Airplane.class);
             Marshaller m =  context.createMarshaller();
             m.marshal(this, writer);
-            System.out.println(writer.toString());
         } catch (JAXBException e) {
             e.printStackTrace();
         }
         return writer.toString();
+    }
+
+    public Airplane fromXML (String xmlObject) {
+        Airplane airplane = null;
+        try(FileWriter writer = new FileWriter("temp.xml", false))
+        {
+            writer.write(xmlObject);
+            writer.flush();
+        }
+        catch(IOException e){
+            System.out.println("Can't writing XML object into file due to: " + e.getMessage());
+        }
+
+        try {
+            File file = new File("temp.xml");
+            JAXBContext jaxbContext = JAXBContext.newInstance(Airplane.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            airplane = (Airplane) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return airplane;
     }
 }
