@@ -42,10 +42,10 @@
         </c:forEach>
         <!-- <%= count=0 %> -->
     </table>
-    <form method="post" action="/addForm">
+    <form method="get" action="/addForm">
         <input class="submitMail" type="submit" value="Add New Aircraft" />
     </form>
-    <form method="post" action="/addAsXML">
+    <form method="get" action="/addFormAsXML">
         <input class="submitMail" type="submit" value="Add New Aircraft as XML" />
     </form>
 </fieldset>

@@ -73,12 +73,18 @@ public class AppController {
 
     @RequestMapping ("/addForm")
     public String addForm (Model model) {
-        String message = "Select request successfully completed";
         String response = "Form is ready";
         model.addAttribute("greeting", AppController.greeting);
-        model.addAttribute("message", message);
         model.addAttribute("response", response);
         return "addForm";
+    }
+
+    @RequestMapping ("/addFormAsXML")
+    public String addFormAsXML (Model model) {
+        String response = "Form is ready";
+        model.addAttribute("greeting", AppController.greeting);
+        model.addAttribute("response", response);
+        return "addFormAsXML";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

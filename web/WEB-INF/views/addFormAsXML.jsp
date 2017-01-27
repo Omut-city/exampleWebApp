@@ -15,8 +15,8 @@
     <form class="mailForm" method="post" action="add">
         <table align="center">
             <tr>
-                <td><label>ID:</label></td>
-                td><textarea rows="4" name="xmlObject" class="inputTextarea"></textarea></td>
+                <td><label>XML object:</label></td>
+                <td><textarea rows="12" cols="60" name="xmlObject" class="inputTextarea"></textarea></td>
             </tr>
 
         </table>
