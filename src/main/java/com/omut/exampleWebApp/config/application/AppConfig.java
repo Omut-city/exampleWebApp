@@ -1,5 +1,6 @@
 package com.omut.exampleWebApp.config.application;
 
+import com.omut.exampleWebApp.model.Add;
 import com.omut.exampleWebApp.model.Create;
 import com.omut.exampleWebApp.model.Insert;
 import com.omut.exampleWebApp.model.Select;
@@ -47,5 +48,10 @@ public class AppConfig {
     @Bean
     public Select select () {
         return new Select(jdbcTemplate());
+    }
+
+    @Bean
+    public Add add () {
+        return new Add(jdbcTemplate());
     }
 }

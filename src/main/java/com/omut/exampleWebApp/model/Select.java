@@ -1,6 +1,9 @@
 package com.omut.exampleWebApp.model;
 
+import com.omut.exampleWebApp.dao.Airplane;
+import com.omut.exampleWebApp.dao.AirplaneMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
 
 public class Select {
     private JdbcTemplate jdbcTemplate;
@@ -9,13 +12,13 @@ public class Select {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public String select () {
-        try {
-            String request = "SELECT * FROM airplane";
-            jdbcTemplate.execute(request);
-            return "Data selected from table";
-        } catch (Exception e) {
-            return "Select from table failed due to: " + e;
-        }
+    public List<Airplane> select () {
+        String request = "SELECT * FROM airplane;";
+        return jdbcTemplate.query(request, new AirplaneMapper());
+    }
+
+    public Airplane selectById (int id) {
+        return jdbcTemplate.queryForObject( "SELECT * FROM airplane WHERE id = ?",
+                new Object[]{id}, new AirplaneMapper() );
     }
 }

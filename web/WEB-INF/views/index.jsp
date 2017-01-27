@@ -1,24 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-
-</head>
-
+<jsp:include page="include/header.jsp"/>
 <body>
-<h1>Example of Web Application</h1>
-<p>${greeting}</p>
-<hr>
-<ul>
-    <li>
-        <a href="create">Create Table</a>
-    </li>
-    <li>
-        <a href="insert">Insert into Table</a>
-    </li>
-    <li>
-        <a href="select">Select from Table</a>
-    </li>
-</ul>
-<hr>
+<h1>${greeting}</h1>
+<jsp:include page="include/menu.jsp"/>
+<hr class="hr">
+<div class="systemMessage">
+        <p><span class="systemResponce">${response}</span></p>
+</div>
+<hr class="hr">
 </body>
 </html>
